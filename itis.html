@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Mükafatı</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            width: 330px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px #bbb;
+        }
+
+        h1 {
+            color: #111;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 98%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #007aff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005ecb;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .warning {
+            font-size: 45px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box" id="register">
+
+        <h1>🎁 Təbriklər!</h1>
+
+        <p>
+            Siz iPhone qazandınız!
+        </p>
+
+        <p>
+            Mükafatı əldə etmək üçün qeydiyyatdan keçin.
+        </p>
+
+        <input type="text" placeholder="Adınız">
+
+        <input type="email" placeholder="E-mail">
+        
+        <input type="password" placeholder="Parol">
+
+        <button onclick="showResult()">
+            Mükafatı əldə et
+        </button>
+
+    </div>
+
+
+    <div class="box" id="result">
+
+        <div class="warning">⚠️</div>
+
+        <h1>ALDADILDINIZ!</h1>
+
+        <button onclick="location.reload()">
+            Yenidən yoxla
+        </button>
+
+    </div>
+
+
+    <script>
+        function showResult() {
+            document.getElementById("register").style.display = "none";
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
