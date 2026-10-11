@@ -1,118 +1,476 @@
+```html
 <!DOCTYPE html>
 <html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone Mükafatı</title>
+
+    <title>iPhone Giveaway | Təhlükəsizlik Demo</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .box {
-            background: white;
-            width: 330px;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px #bbb;
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background:
+                radial-gradient(ellipse at 80% 20%, #34316b 0%, transparent 40%),
+                radial-gradient(ellipse at 10% 90%, #173b65 0%, transparent 40%),
+                #090b12;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #8da6ff;
+        }
+
+        .badge {
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.07);
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: #d5dcff;
+        }
+
+        .container {
+            max-width: 1150px;
+            min-height: 75vh;
+            margin: auto;
+            padding: 55px 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .content {
+            animation: slideIn 0.9s ease;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 14px;
+            background: rgba(119, 142, 255, 0.13);
+            border: 1px solid rgba(119, 142, 255, 0.35);
+            border-radius: 30px;
+            color: #aabaff;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
         }
 
         h1 {
-            color: #111;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.08;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
         }
 
-        p {
-            color: #555;
+        h1 span {
+            background: linear-gradient(90deg, #8ea5ff, #e0baff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .description {
+            max-width: 490px;
+            color: #a9afc2;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .phone-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 450px;
+        }
+
+        .glow {
+            position: absolute;
+            width: 290px;
+            height: 290px;
+            border-radius: 50%;
+            background: #677dff;
+            filter: blur(100px);
+            opacity: 0.25;
+        }
+
+        .phone {
+            width: 205px;
+            height: 405px;
+            border-radius: 38px;
+            padding: 8px;
+            background: linear-gradient(
+                135deg,
+                #f4f5fa,
+                #737887,
+                #e8e9ef,
+                #686d7a
+            );
+            box-shadow: 0 35px 90px rgba(0,0,0,0.65);
+            transform: rotate(-8deg);
+            animation: float 4s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 31px;
+            overflow: hidden;
+            position: relative;
+            background:
+                radial-gradient(circle at 25% 25%, #f1b8ff, transparent 35%),
+                radial-gradient(circle at 75% 65%, #718aff, transparent 45%),
+                linear-gradient(150deg, #18234b, #080b18 70%);
+            border: 3px solid #191b25;
+        }
+
+        .camera {
+            width: 72px;
+            height: 20px;
+            border-radius: 20px;
+            background: #050609;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .screen-label {
+            position: absolute;
+            top: 85px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            color: #dfe4ff;
+            letter-spacing: 2px;
+        }
+
+        .screen-title {
+            position: absolute;
+            top: 135px;
+            width: 100%;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+            text-shadow: 0 0 25px #8a9aff;
+        }
+
+        .screen-circle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.5);
+            left: 50%;
+            top: 53%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 40px rgba(172,174,255,0.4);
+        }
+
+        .screen-bottom {
+            position: absolute;
+            bottom: 38px;
+            width: 100%;
+            text-align: center;
+            color: #e1e5ff;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .demo-card {
+            max-width: 490px;
+            padding: 25px;
+            margin-top: 15px;
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 22px;
+            background: rgba(255,255,255,0.045);
+            backdrop-filter: blur(18px);
+        }
+
+        .demo-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .demo-card > p {
+            color: #a9afc2;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .field-label {
+            display: block;
+            color: #dce0ef;
+            font-size: 13px;
+            margin: 16px 0 8px;
         }
 
         input {
-            width: 90%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        button {
-            width: 98%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 8px;
-            background: #007aff;
+            width: 100%;
+            padding: 14px 15px;
             color: white;
-            font-size: 16px;
+            background: rgba(5,8,18,0.7);
+            border: 1px solid #34394e;
+            border-radius: 11px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #879cff;
+            box-shadow: 0 0 0 3px rgba(135,156,255,0.12);
+        }
+
+        .main-button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 11px;
+            color: #101426;
+            background: linear-gradient(90deg, #9aafff, #d5b1ff);
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.25s;
         }
 
-        button:hover {
-            background: #005ecb;
+        .main-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(136,146,255,0.25);
         }
 
-        #result {
+        .notice {
+            color: #aab0c3;
+            font-size: 11px;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        .result {
             display: none;
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(105, 210, 160, 0.09);
+            border: 1px solid rgba(105, 210, 160, 0.35);
+            color: #baf5d6;
+            font-size: 13px;
+            line-height: 1.7;
         }
 
-        .warning {
-            font-size: 45px;
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #777f96;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(-8deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(-5deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                padding: 20px;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                padding: 35px 20px;
+                gap: 25px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .demo-card {
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .phone-area {
+                min-height: 430px;
+                grid-row: 1;
+            }
+
+            .phone {
+                width: 180px;
+                height: 355px;
+            }
+
+            h1 {
+                font-size: 43px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="box" id="register">
+    <nav class="navbar">
+        <div class="logo">iPhone<span>Demo.</span></div>
+        <div class="badge">KİBERTƏHLÜKƏSİZLİK TƏLİMİ</div>
+    </nav>
 
-        <h1>🎁 Təbriklər!</h1>
+    <main class="container">
 
-        <p>
-            Siz iPhone qazandınız!
-        </p>
+        <section class="content">
+            <div class="tag">✦ İNTERAKTİV TƏHLÜKƏSİZLİK DEMOSU</div>
 
-        <p>
-            Mükafatı əldə etmək üçün qeydiyyatdan keçin.
-        </p>
+            <h1>
+                Rəqəmsal dünyada<br>
+                <span>ayıq ol.</span>
+            </h1>
 
-        <input type="text" placeholder="Adınız">
+            <p class="description">
+                Cəlbedici hədiyyə elanlarının arxasında nə dayana bilər?
+                Bu interaktiv demo internetdəki şübhəli kampaniyaları
+                tanımağı və şəxsi məlumatları qorumağı öyrədir.
+            </p>
 
-        <input type="email" placeholder="E-mail">
-        
-        <input type="password" placeholder="Parol">
+            <div class="demo-card">
+                <h2>📱 iPhone kampaniyası</h2>
 
-        <button onclick="showResult()">
-            Mükafatı əldə et
-        </button>
+                <p>
+                    Sınaq formasını doldur və belə elanlara qarşı
+                    necə diqqətli olmaq lazım olduğunu öyrən.
+                    Bu, real hədiyyə kampaniyası deyil.
+                </p>
 
-    </div>
+                <form id="demoForm">
+                    <label class="field-label" for="demoEmail">
+                        Demo e-poçt (istəyə bağlı)
+                    </label>
 
+                    <input
+                        type="email"
+                        id="demoEmail"
+                        placeholder="test@example.com"
+                        autocomplete="off"
+                    >
 
-    <div class="box" id="result">
+                    <label class="field-label" for="demoCode">
+                        Sınaq kodu (istəyə bağlı)
+                    </label>
 
-        <div class="warning">⚠️</div>
+                    <input
+                        type="text"
+                        id="demoCode"
+                        placeholder="Məsələn: DEMO123"
+                        autocomplete="off"
+                    >
 
-        <h1>ALDADILDINIZ!</h1>
+                    <button class="main-button" type="submit">
+                        DEMONU TAMAMLA →
+                    </button>
+                </form>
 
-        <button onclick="location.reload()">
-            Yenidən yoxla
-        </button>
+                <p class="notice">
+                    ⚠️ Real parol, bank məlumatı və digər həssas
+                    məlumatları daxil etmə. Bu demo formu heç bir
+                    məlumatı serverə göndərmir.
+                </p>
 
-    </div>
+                <div class="result" id="result" role="status">
+                    <strong>🛡️ Demo tamamlandı!</strong><br>
+                    İnternetdə “iPhone qazandınız” kimi gözlənilməz
+                    elanlarla qarşılaşanda göndərənin etibarlılığını
+                    yoxla. Şübhəli səhifələrə real parolunu daxil etmə.
+                </div>
+            </div>
+        </section>
 
+        <section class="phone-area" aria-label="iPhone təsviri">
+            <div class="glow"></div>
+
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="camera"></div>
+                    <div class="screen-label">DISCOVER</div>
+                    <div class="screen-title">iPhone</div>
+                    <div class="screen-circle"></div>
+                    <div class="screen-bottom">THINK BEFORE YOU CLICK</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Təhlükəsizlik maarifləndirməsi üçün hazırlanmış demo layihə.<br>
+        Heç bir məlumat serverə göndərilmir və database-də saxlanılmır.
+    </footer>
 
     <script>
-        function showResult() {
-            document.getElementById("register").style.display = "none";
-            document.getElementById("result").style.display = "block";
-        }
+        const form = document.getElementById("demoForm");
+        const result = document.getElementById("result");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            result.style.display = "block";
+
+            result.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+        });
     </script>
 
 </body>
 </html>
+```
